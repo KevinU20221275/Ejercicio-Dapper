@@ -1,0 +1,66 @@
+﻿@model IEnumerable<UniversityDapper.Models.University>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Nueva universidad</a>
+</p>
+
+@if(TempData["message"] != null)
+{
+    <div class="alert alert-primary" role="alert">
+        @TempData["message"]
+    </div>
+}
+
+<table class="table table-bordered table-striped table-responsive mt-2">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UniversityName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UniversityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                <a 
+                    asp-controller="University" 
+                    asp-action="Edit" 
+                    asp-route-id="@item.Id"
+                    class="btn btn-warning"
+                >Editar
+                </a>
+                <a 
+                    asp-controller="University" 
+                    asp-action="Delete" 
+                    asp-route-id="@item.Id"
+                    class="btn btn-danger"
+                >Eliminar
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
