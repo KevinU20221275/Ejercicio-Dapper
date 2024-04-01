@@ -15,6 +15,16 @@ namespace UniversityDapper.Repositories.Faculties
             _dataAccess = dataAccess;
         }
 
+        public IEnumerable<University> GetAllUniversities()
+        {
+            string query = "SELECT Id, UniversityName FROM University";
+
+            using (var connection = _dataAccess.GetConnection())
+            {
+                return connection.Query<University>(query);
+            }
+        }
+
         public IEnumerable<Faculty> GetAll()
         {
             using (var connection = _dataAccess.GetConnection())
@@ -37,10 +47,10 @@ namespace UniversityDapper.Repositories.Faculties
         {
             using (var connection = _dataAccess.GetConnection())
             {
-                string storeProcedure = "dbo.spFaculty_GetById";
+                string storedProcedure = "dbo.spFaculty_GetById";
 
                 return connection.QueryFirstOrDefault<Faculty>(
-                                    storeProcedure,
+                                    storedProcedure,
                                     new { Id = id },
                                     commandType: CommandType.StoredProcedure
                                    );
@@ -51,10 +61,10 @@ namespace UniversityDapper.Repositories.Faculties
         {
             using (var connection = _dataAccess.GetConnection())
             {
-                string storeProcedure = "dbo.spFaculty_Insert";
+                string storedProcedure = "dbo.spFaculty_Insert";
 
                 connection.Execute(
-                    storeProcedure,
+                    storedProcedure,
                     new { faculty.FacultyName, faculty.UniversityId },
                     commandType: CommandType.StoredProcedure
                     );
@@ -66,9 +76,11 @@ namespace UniversityDapper.Repositories.Faculties
         {
             using (var connection = _dataAccess.GetConnection())
             {
-                string storeProcedure = "dbo.spFaculty_Update";
+                string storedProcedure = "dbo.spFaculty_Update";
 
-                connection.Execute(storeProcedure, faculty, commandType: CommandType.StoredProcedure);
+                connection.Execute(storedProcedure,
+                    new { faculty.Id, faculty.FacultyName, faculty.UniversityId }, 
+                    commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -76,11 +88,11 @@ namespace UniversityDapper.Repositories.Faculties
         {
             using (var connection = _dataAccess.GetConnection())
             {
-                string storeProcedure = "dbo.spFaculty_Delete";
+                string storedProcedure = "dbo.spFaculty_Delete";
 
                 connection.Execute(
-                    storeProcedure,
-                    new { id },
+                    storedProcedure,
+                    new { Id = id },
                     commandType: CommandType.StoredProcedure
                     );
             }

@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="mb-3">Universidades</h1>
 
 <p>
     <a asp-action="Create" class="btn btn-success">Nueva universidad</a>
@@ -29,7 +29,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Phone)
             </th>
-            <th></th>
+            <th>
+                Acciones
+            </th>
         </tr>
     </thead>
     <tbody>

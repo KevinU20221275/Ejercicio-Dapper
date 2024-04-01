@@ -20,7 +20,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="UniversityId" class="control-label"></label>
-                <input asp-for="UniversityId" class="form-control" />
+                <select class="form-select" asp-for="UniversityId" asp-items="@ViewBag.Universities" id="universitySearch">
+                    <option value="">Seleccione una Universidad</option>
+                </select>
                 <span asp-validation-for="UniversityId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -36,4 +38,13 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $('#universitySearch').select2({
+            language: "es",
+            width: '100%',
+            placeholder: "Seleccione una Universidad",
+        });
+
+    </script>
 }

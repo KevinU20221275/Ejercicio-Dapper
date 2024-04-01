@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using UniversityDapper.Models;
 using UniversityDapper.Repositories.Faculties;
 
@@ -9,9 +10,16 @@ namespace UniversityDapper.Controllers
     {
         private readonly IFacultyRepository _facultyRepository;
 
+        private SelectList _universitiesList;
+
         public FacultyController(IFacultyRepository facultyRepository)
         {
             _facultyRepository = facultyRepository;
+            _universitiesList = new SelectList(
+                    _facultyRepository.GetAllUniversities(),
+                    nameof(University.Id),
+                    nameof(University.UniversityName)
+                 );
         }
 
         public ActionResult Index()
@@ -24,6 +32,8 @@ namespace UniversityDapper.Controllers
         // GET: FacultyController/Create
         public ActionResult Create()
         {
+            ViewBag.Universities = _universitiesList;
+
             return View();
         }
 

@@ -4,12 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="mb-3">Facultades</h1>
 
 <p>
-    <a asp-action="Create">Nueva Facultad</a>
+    <a asp-action="Create" class="btn btn-success">Nueva Facultad</a>
 </p>
-<table class="table">
+<table class="table table-bordered table-striped table-responsive mt-2">
     <thead>
         <tr>
             <th>
@@ -21,7 +21,9 @@
             <th>
                 Universidad
             </th>
-            <th></th>
+            <th>
+                Acciones
+            </th>
         </tr>
     </thead>
     <tbody>

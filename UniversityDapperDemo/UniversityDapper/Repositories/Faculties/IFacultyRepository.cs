@@ -8,7 +8,7 @@ namespace UniversityDapper.Repositories.Faculties
         void Delete(int id);
         void Edit(Faculty faculty);
         IEnumerable<Faculty> GetAll();
-
+        IEnumerable<University> GetAllUniversities();
         Faculty? GetById(int id);
     }
 }
