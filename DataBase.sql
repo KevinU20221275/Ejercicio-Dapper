@@ -108,15 +108,6 @@ BEGIN
 END;
 GO
 
-
-CREATE PROCEDURE dbo.spGetAllUniversities
-AS
-BEGIN
-	SELECT Id, UniversityName 
-	FROM University
-END;
-GO
-
 -- INSERT
 CREATE PROCEDURE dbo.spFaculty_Insert
 (
