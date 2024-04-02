@@ -1,15 +1,19 @@
 using UniversityDapper.Data;
 using UniversityDapper.Repositories.Faculties;
 using UniversityDapper.Repositories.Universities;
+using UniversityDapper.Services.Email;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddTransient<IEmailService, EmailService>();
+
 builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddScoped<IUniversityRepository, UniversityRepository>();
 builder.Services.AddScoped<IFacultyRepository, FacultyRepository>();
+
 
 var app = builder.Build();
 

@@ -53,6 +53,7 @@ namespace UniversityDapper.Controllers
             catch (Exception ex)
             {
                 TempData["message"] = ex.Message;
+                ViewBag.Universities = _universitiesList;
 
                 return View(faculty);
             }
@@ -62,6 +63,7 @@ namespace UniversityDapper.Controllers
         public ActionResult Edit(int id)
         {
             var faculty = _facultyRepository.GetById(id);
+            ViewBag.Universities = _universitiesList;
 
             if (faculty == null)
             {
@@ -86,6 +88,7 @@ namespace UniversityDapper.Controllers
             }
             catch (Exception ex)
             {
+                ViewBag.Universities = _universitiesList;
                 return View(faculty);
             }
         }
